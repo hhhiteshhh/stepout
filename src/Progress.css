@@ -1,0 +1,7 @@
+.progress__progress {
+  color: white !important;
+  border-top-left-radius: 20px;
+  border-top-right-radius: 20px;
+  border: 2px solid black;
+  background-color: black;
+}

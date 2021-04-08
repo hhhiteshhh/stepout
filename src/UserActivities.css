@@ -1,0 +1,136 @@
+.useractivities__container {
+  background-color: black;
+  width: 96.4%;
+  margin-bottom: 50px !important;
+  margin-left: 20px;
+  height: 100%;
+  padding-bottom: 20px;
+}
+.spacerr {
+  width: 96.4%;
+  height: 50px;
+  background-color: black;
+  margin-left: 20px;
+}
+.allactivity {
+  display: flex;
+  background-color: #ee6c4d;
+  flex: 0.7;
+  flex-direction: column;
+  width: 60%;
+  margin-left: auto;
+  margin-right: auto;
+}
+.user__activity__container {
+  background-color: white;
+  width: 80%;
+  margin-left: auto;
+  margin-right: auto;
+  padding: 20px;
+  box-shadow: -10px 10px #ee6c4d;
+  margin-bottom: 50px !important;
+}
+
+.useractivity__heading {
+  color: black;
+  display: flex;
+  font-size: 1.8rem;
+  flex-direction: row !important ;
+  justify-content: space-between;
+  font-family: poppins;
+}
+
+
+@media (max-width: 1125px) {
+  .useractivities {
+    zoom: 0.9 !important;
+  }
+}
+
+@media (max-width: 1040px) {
+  .useractivities {
+    zoom: 0.85 !important;
+  }
+}
+
+@media (max-width: 1000px) {
+  .useractivities {
+    zoom: 0.8 !important;
+  }
+}
+@media (max-width: 930px) {
+  .useractivities {
+    zoom: 0.75 !important;
+  }
+}
+
+@media (max-width: 880px) {
+  .useractivities {
+    zoom: 0.7 !important;
+  }
+}
+
+@media (max-width: 820px) {
+  .useractivities {
+    zoom: 0.65 !important;
+  }
+}
+
+@media (max-width: 760px) {
+  .useractivities {
+    zoom: 0.6 !important;
+  }
+}
+
+@media (max-width: 700px) {
+  .useractivities {
+    zoom: 0.55 !important;
+  }
+}
+
+@media (max-width: 640px) {
+  .useractivities {
+    zoom: 0.5 !important;
+  }
+}
+@media (max-width: 580px) {
+  .useractivities {
+    zoom: 0.45 !important;
+  }
+}
+
+@media (max-width: 520px) {
+  .useractivities {
+    zoom: 0.4 !important;
+  }
+}
+
+@media (max-width: 460px) {
+  .useractivities {
+    zoom: 0.35 !important;
+  }
+}
+
+@media (max-width: 400px) {
+  .useractivities {
+    zoom: 0.3 !important;
+  }
+}
+
+@media (max-width: 350px) {
+  .useractivities {
+    zoom: 0.25 !important;
+  }
+}
+
+@media (max-width: 300px) {
+  .useractivities {
+    zoom: 0.2 !important;
+  }
+}
+
+@media (max-width: 250px) {
+  .useractivities {
+    zoom: 0.15 !important;
+  }
+}

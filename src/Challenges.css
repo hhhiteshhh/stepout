@@ -1,0 +1,31 @@
+.challenge__profile,
+.challenge__progress,
+.challenge__explore {
+  background-color: #ee6c4d;
+  border-top-left-radius: 20px;
+  border-top-right-radius: 20px;
+  border: 2px solid #ee6c4d;
+}
+
+.challenge__profile {
+  margin-left: 20px;
+}
+.challenge__challenge {
+  color: white !important;
+  border-top-left-radius: 20px;
+  border-top-right-radius: 20px;
+  border: 2px solid black;
+  background-color: black;
+}
+.getchallenge__text {
+  font-size: 1.3rem;
+  font-family: Poppins;
+  cursor: pointer;
+}
+.getchallenge__text:hover {
+  text-decoration: underline;
+}
+.get__challenge {
+  display: flex;
+  align-items: center;
+}

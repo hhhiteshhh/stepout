@@ -1,0 +1,7 @@
+.blog__image__2 {
+  height: 300px;
+  width: 300px;
+  border: 2px solid black;
+  box-shadow: -10px 10px #ee6c4d;
+  margin-left: 30px;
+}

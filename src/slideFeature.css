@@ -1,0 +1,12 @@
+.home__image {
+  border: 2px solid black;
+  width: 580px;
+  height: 480px;
+  min-width: 300px;
+}
+
+@media (max-width: 980px) {
+  .home__image {
+    margin-bottom: -4px;
+  }
+}
