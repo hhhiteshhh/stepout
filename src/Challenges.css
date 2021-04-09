@@ -28,4 +28,8 @@
 .get__challenge {
   display: flex;
   align-items: center;
+  padding: 15px;
+}
+.dare__box {
+  flex-wrap: wrap;
 }

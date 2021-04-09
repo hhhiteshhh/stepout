@@ -12,6 +12,7 @@ import FormLabel from "@material-ui/core/FormLabel";
 import Button from "@material-ui/core/Button";
 import { makeStyles, Modal } from "@material-ui/core";
 import Dare from "./Dare";
+import firebase from "firebase";
 
 function getModalStyle() {
   const top = 50;
@@ -77,6 +78,7 @@ function Challenges() {
       db.collection("users")
         .doc(user.uid)
         .collection("DaresAnswers")
+        .orderBy("timestamp", "asc")
         .onSnapshot((snapshot) => {
           setDares(
             snapshot.docs.map((doc) => ({
@@ -84,7 +86,6 @@ function Challenges() {
               answer: doc.data().answer,
             }))
           );
-          //          console.log("hitesh dares", dares);
         });
     }
   });
@@ -103,23 +104,17 @@ function Challenges() {
   };
 
   const AddDare = (answer, question, qId) => {
-    console.log(
-      "your question is",
-      question,
-      "and your answer is",
-      answer,
-      "and question id is",
-      qId
-    );
     db.collection("users").doc(user.uid).collection("DaresAnswers").add({
       question: question,
       answer: answer,
+      timestamp: firebase.firestore.FieldValue.serverTimestamp(),
     });
     db.collection("users")
       .doc(user.uid)
       .collection("availableQuestions")
       .doc(qId)
       .delete();
+    history.push("/challenges");
   };
 
   return (
@@ -185,7 +180,6 @@ function Challenges() {
                     e.preventDefault();
                     setOpen(false);
                     setValue("");
-                    console.log("hitesh", value);
                     AddDare(value, question1.question1, question1.questionId);
                   }}
                 >
@@ -219,12 +213,18 @@ function Challenges() {
         className="get__challenge"
         onClick={() => {
           setOpen(true);
+          if (questions.length === 0) {
+            alert("Hello! I am an alert box!");
+          }
         }}
       >
         <AddIcon className="addbutton" />
         <span className="getchallenge__text">Get a new challenge</span>
       </div>
-      <div>
+      <div
+        style={{ display: "flex", flexDirection: "row" }}
+        className="dare__box"
+      >
         {dares?.map((dare, ide) => (
           <Dare dare={dare} />
         ))}

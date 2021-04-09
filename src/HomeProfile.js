@@ -45,8 +45,7 @@ function HomeProfile(props) {
   const [question, setQuestion] = useState("");
   const [answer, setAnswer] = useState("");
   const [answers, setAnswers] = useState([]);
-  
-
+  const [dares, setDares] = useState([]);
 
   const handleChange = (event) => {
     setQuestion(event.target.value);
@@ -71,6 +70,7 @@ function HomeProfile(props) {
   };
   const descriptionElementRef = useRef(null);
 
+ 
   useEffect(() => {
     if (open) {
       const { current: descriptionElement } = descriptionElementRef;
