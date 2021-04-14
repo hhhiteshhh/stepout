@@ -20,6 +20,7 @@ import Challenges from "./Challenges";
 import Progress from "./Progress";
 import Explore from "./Explore";
 import UserActivities from "./UserActivities";
+import AllJournalEntries from "./AllJournalEntries";
 
 function App() {
   const [state, setState] = useState(false);
@@ -94,6 +95,13 @@ function App() {
             {backdrop}
             <UserActivities />
           </Route>
+          <Route path="/allJournalEntries">
+            <Header1 drawerClickHandler={drawerToggleClickHandler} />
+            <SideDrawer show={state.sideDrawerOpen} />
+            {backdrop}
+            <AllJournalEntries />
+          </Route>
+
           <Route path="/challenges">
             <Header1 drawerClickHandler={drawerToggleClickHandler} />
             <SideDrawer show={state.sideDrawerOpen} />

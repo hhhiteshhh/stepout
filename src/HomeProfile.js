@@ -5,7 +5,7 @@ import { useStateValue } from "./StateProvider";
 import "./HomeProfile.css";
 import { Avatar, InputLabel } from "@material-ui/core";
 import AddIcon from "@material-ui/icons/Add.js";
-import pic1 from "./images/investing.png";
+import pic1 from "./images/journals.png";
 import Dialog from "@material-ui/core/Dialog";
 import DialogActions from "@material-ui/core/DialogActions";
 import DialogContent from "@material-ui/core/DialogContent";
@@ -38,14 +38,17 @@ const useStyles = makeStyles((theme) => ({
 function HomeProfile(props) {
   const [open, setOpen] = useState(false);
   const [scroll, setScroll] = useState("body");
+  const [open1, setOpen1] = useState(false);
+  const [scroll1, setScroll1] = useState("body");
   const [maxWidth, setMaxWidth] = useState("md");
+  const [maxWidth1, setMaxWidth1] = useState("lg");
   const history = useHistory();
   const [{ user }] = useStateValue();
   const classes = useStyles();
   const [question, setQuestion] = useState("");
   const [answer, setAnswer] = useState("");
   const [answers, setAnswers] = useState([]);
-  const [dares, setDares] = useState([]);
+  const [journal, setJournal] = useState("");
 
   const handleChange = (event) => {
     setQuestion(event.target.value);
@@ -63,22 +66,39 @@ function HomeProfile(props) {
     setOpen(true);
     setScroll(scrollType);
   };
+  const handleClickOpen1 = (scrollType) => () => {
+    setOpen1(true);
+    setScroll1(scrollType);
+  };
+
   const handleClose = () => {
     setAnswer("");
     setOpen(false);
     setQuestion("");
   };
-  const descriptionElementRef = useRef(null);
 
- 
+  const handleClose1 = () => {
+    setJournal("");
+    setOpen1(false);
+  };
+  const descriptionElementRef = useRef(null);
+  const descriptionElementRef1 = useRef(null);
+
   useEffect(() => {
     if (open) {
       const { current: descriptionElement } = descriptionElementRef;
       if (descriptionElement !== null) {
         descriptionElement.focus();
       }
+    } else {
+      if (open1) {
+        const { current: descriptionElement } = descriptionElementRef1;
+        if (descriptionElement !== null) {
+          descriptionElement.focus();
+        }
+      }
     }
-  }, [open]);
+  }, [open, open1]);
 
   useEffect(() => {
     if (user) {
@@ -102,6 +122,18 @@ function HomeProfile(props) {
       setAnswers([]);
     }
   }, [user]);
+
+  const addJournalEntry = (e) => {
+    e.preventDefault();
+    db.collection("users").doc(user?.uid).collection("journals").add({
+      timestamp: firebase.firestore.FieldValue.serverTimestamp(),
+      username: user.displayName,
+      userid: user.uid,
+      journal: journal,
+    });
+    setJournal("");
+    setOpen1(false);
+  };
 
   const addPost = (e) => {
     e.preventDefault();
@@ -229,7 +261,59 @@ function HomeProfile(props) {
           </DialogContentText>
         </DialogContent>
         <DialogActions>
-          <Button onClick={handleClose} color="primary">
+          <Button onClick={handleClose} color="primary" className="cllloseee___button">
+            Close
+          </Button>
+        </DialogActions>
+      </Dialog>
+
+      <Dialog
+        className="activityquestions"
+        open={open1}
+        onClose={handleClose1}
+        scroll={scroll1}
+        maxWidth={maxWidth1}
+        aria-labelledby="scroll-dialog-title"
+        aria-describedby="scroll-dialog-description"
+      >
+        <DialogTitle className="scroll-dialog-title">
+          <div>
+            <strong>NEW ENTRY</strong>
+          </div>
+        </DialogTitle>
+        <DialogContent dividers={scroll === "body"}>
+          <DialogContentText
+            id="scroll-dialog-description"
+            ref={descriptionElementRef1}
+            tabIndex={-1}
+          >
+            <div className="scroll-dialog-text">
+              <form className={classes.root} noValidate autoComplete="off">
+                <TextField
+                  id="outlined-multiline-static"
+                  label="Add Entry"
+                  multiline
+                  rows={4}
+                  variant="outlined"
+                  value={journal}
+                  onChange={(e) => setJournal(e.target.value)}
+                />
+
+                <br />
+                <Button
+                  className="submit__entry__button"
+                  disabled={!journal}
+                  type="submit"
+                  onClick={addJournalEntry}
+                >
+                  <strong>ADD ENTRY</strong>
+                </Button>
+              </form>
+            </div>
+          </DialogContentText>
+        </DialogContent>
+        <DialogActions>
+          <Button onClick={handleClose1} color="primary" className="cllloseee___button">
             Close
           </Button>
         </DialogActions>
@@ -243,9 +327,6 @@ function HomeProfile(props) {
         <Link to="/challenges" className="homechallenge">
           Challenges
         </Link>
-        <Link to="/progress" className="homeprogress">
-          Progress
-        </Link>
         <Link to="/explore" className="homeexplore">
           Explore
         </Link>
@@ -257,15 +338,31 @@ function HomeProfile(props) {
       <div className="profile__container__1">
         <div className="profile__container__1__left">
           <div className="profile__container__1__left__1">
-            <strong className="name__hello">
-              Hello {user?.displayName}!<br />
-              <br />
-            </strong>
-            You have <span className="numberofchallenges">1 challenge </span> to
-            finish and already finished <span>68%</span> of your weekly target.
+            <h1 className="journal">
+              Journal <br />
+            </h1>
+            <br />
+            <i style={{ fontFamily: "Pacifico" }}>
+              Put your thoughts that clutter your mind
+            </i>
             <br />
             <br />
-            Keep working towards your goal.
+            <b>Few Advantages:</b>
+            <br />
+            1) Clears and calms your mind.
+            <br /> 2) Improves your memory
+            <br /> 3) Let go of any negative thoughts or feelings
+            <br /> 4) Unleash creativity
+            <br />
+            <div className="entry__button">
+              <div className="add__entry" onClick={handleClickOpen1("body")}>
+                Add Entry
+              </div>
+              <div className="all__entry">
+                {" "}
+                <Link to="/allJournalEntries">See all Entries</Link>
+              </div>
+            </div>
           </div>
           <div className="profile__container__1__left__2">
             <img src={pic1} alt="" className="investing" />
@@ -283,19 +380,18 @@ function HomeProfile(props) {
           <div className="profile__container__1__right__2">
             <div className="current__challenge">
               {" "}
+              <br />
               Current Challenges{" "}
               <div>
-                <br />
                 <b>1</b>
-                <br />
               </div>
             </div>
             <div className="completed__challenge">
               {" "}
+              <br />
               Completed Challenges{" "}
               <div>
-                <br />
-                <b>4</b>
+                <b>3</b>
               </div>
             </div>
           </div>

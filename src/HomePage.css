@@ -24,8 +24,11 @@
 .outside {
   color: #ee6c4d;
 }
+.carousel {
+  flex: 1;
+}
 .homepage__container__1__right {
-  flex: 0.48;
+  flex: 0.8;
   margin-left: 20px;
   box-shadow: -10px 10px #ee6c4d;
   height: 484px;

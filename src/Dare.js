@@ -4,10 +4,6 @@ import { auth, db } from "./firebase";
 import { useStateValue } from "./StateProvider";
 import { makeStyles } from "@material-ui/core";
 import Dialog from "@material-ui/core/Dialog";
-import ListItemText from "@material-ui/core/ListItemText";
-import ListItem from "@material-ui/core/ListItem";
-import List from "@material-ui/core/List";
-import Divider from "@material-ui/core/Divider";
 import AppBar from "@material-ui/core/AppBar";
 import Toolbar from "@material-ui/core/Toolbar";
 import IconButton from "@material-ui/core/IconButton";
@@ -44,24 +40,28 @@ function Dare(props) {
   const [displaydare, setDispalydare] = useState(true);
   const [answer, setAnswer] = useState();
   const [{ user }] = useStateValue();
-
   useEffect(() => {
     if (user) {
       db.collection("Dares")
         .doc(props.dare.answer)
         .get()
         .then((snapshot) => {
-          setAnswer(snapshot.data());
+          setAnswer({ answer: snapshot.data(), id: snapshot.id });
         });
     }
-  });
+  }, [user]);
+
+  // const handleComplete = (id) => {
+  //   console.log(id);
+  // };
   return (
-    <div style={{ padding: 20 }}>
+    <div style={{ padding: 20 }} className="dare__box1">
       <Dialog
         fullScreen
         open={open}
         onClose={handleClose}
         TransitionComponent={Transition}
+        className={classes.zoom}
       >
         <AppBar className={classes.appBar}>
           <Toolbar style={{ backgroundColor: "#fff" }}>
@@ -78,10 +78,12 @@ function Dare(props) {
               className={classes.title}
               style={{ fontSize: 30, fontFamily: "Poppins", color: "#000" }}
             >
-              <b>Challenge: {answer?.DareName}</b>
+              <b>Challenge: {answer?.answer.DareName}</b>
             </Typography>
             <Button
-              onClick={handleClose}
+              onClick={() => {
+                console.log(answer?.id);
+              }}
               style={{ color: "#fff", backgroundColor: "#ee6c4d" }}
             >
               Completed
@@ -91,7 +93,7 @@ function Dare(props) {
         <div className="modal__1">
           <div style={{ objectFit: "contain" }}>
             <img
-              src={answer?.ImageURL}
+              src={answer?.answer.ImageURL}
               alt=""
               className="modal__image"
               height="450px"
@@ -102,16 +104,17 @@ function Dare(props) {
               style={{
                 fontSize: 24,
                 fontFamily: "Pacifico",
-                paddingLeft: "5%",
+                paddingLeft: "10%",
                 textDecoration: "underline",
               }}
             >
               <b>Points to Remember</b>
             </span>
-            {answer?.Points.map((point) => (
+            {answer?.answer.Points.map((point) => (
               <div
                 style={{
                   paddingLeft: 15,
+                  paddingRight: 15,
                   lineHeight: 2.0,
                   fontSize: 17,
                   fontFamily: "Poppins",
@@ -135,7 +138,7 @@ function Dare(props) {
           >
             <b>Advantages</b>
           </span>
-          {answer?.Advantages.map((advantage) => (
+          {answer?.answer.Advantages.map((advantage) => (
             <div
               style={{
                 lineHeight: 2.0,
@@ -152,10 +155,8 @@ function Dare(props) {
       </Dialog>
       {displaydare ? (
         <img
-          src={answer?.ImageURL}
+          src={answer?.answer.ImageURL}
           alt=""
-          width="400px"
-          height="300px"
           onClick={handleClickOpen}
           className="image__div"
         />

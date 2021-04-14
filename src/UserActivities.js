@@ -241,9 +241,6 @@ function UserActivities() {
         <Link to="/challenges" className="homechallenge">
           Challenges
         </Link>
-        <Link to="/progress" className="homeprogress">
-          Progress
-        </Link>
         <Link to="/explore" className="homeexplore">
           Explore
         </Link>

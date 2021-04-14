@@ -13,7 +13,7 @@ import Button from "@material-ui/core/Button";
 import { makeStyles, Modal } from "@material-ui/core";
 import Dare from "./Dare";
 import firebase from "firebase";
-
+import nodare from "./images/nodaresyet.jpg";
 function getModalStyle() {
   const top = 50;
   const left = 50;
@@ -39,6 +39,11 @@ const useStyles = makeStyles((theme) => ({
   },
   button: {
     margin: theme.spacing(1, 1, 0, 0),
+    color: "#fff",
+    border: "1px solid #000",
+    backgroundColor: "#000",
+    outlineColor: "none",
+    fontFamily: "Comfortaa",
   },
 }));
 
@@ -51,7 +56,7 @@ function Challenges() {
   const history = useHistory();
   const [{ user }] = useStateValue();
   const [questions, setQuestions] = useState([]);
-  const [dares, setDares] = useState();
+  const [dares, setDares] = useState([]);
   useEffect(() => {
     if (user) {
       db.collection("users")
@@ -78,7 +83,7 @@ function Challenges() {
       db.collection("users")
         .doc(user.uid)
         .collection("DaresAnswers")
-        .orderBy("timestamp", "asc")
+        .orderBy("timestamp", "desc")
         .onSnapshot((snapshot) => {
           setDares(
             snapshot.docs.map((doc) => ({
@@ -108,13 +113,17 @@ function Challenges() {
       question: question,
       answer: answer,
       timestamp: firebase.firestore.FieldValue.serverTimestamp(),
+      isCompleted: false,
     });
+
     db.collection("users")
       .doc(user.uid)
       .collection("availableQuestions")
       .doc(qId)
       .delete();
-    history.push("/challenges");
+  };
+  const myFunction = () => {
+    window.location.reload();
   };
 
   return (
@@ -127,7 +136,7 @@ function Challenges() {
             setValue("");
           }}
         >
-          <div style={modalStyle} className={classes.paper}>
+          <div style={modalStyle} className={classes.paper} id="modalll">
             <form>
               <FormControl
                 component="fieldset"
@@ -181,6 +190,7 @@ function Challenges() {
                     setOpen(false);
                     setValue("");
                     AddDare(value, question1.question1, question1.questionId);
+                    setTimeout(myFunction, 5000);
                   }}
                 >
                   Submit
@@ -199,9 +209,6 @@ function Challenges() {
         <Link to="/challenges" className="challenge__challenge">
           Challenges
         </Link>
-        <Link to="/progress" className="challenge__progress">
-          Progress
-        </Link>
         <Link to="/explore" className="challenge__explore">
           Explore
         </Link>
@@ -214,20 +221,19 @@ function Challenges() {
         onClick={() => {
           setOpen(true);
           if (questions.length === 0) {
-            alert("Hello! I am an alert box!");
+            alert("No more questions available at the moment");
           }
         }}
       >
         <AddIcon className="addbutton" />
         <span className="getchallenge__text">Get a new challenge</span>
       </div>
-      <div
-        style={{ display: "flex", flexDirection: "row" }}
-        className="dare__box"
-      >
-        {dares?.map((dare, ide) => (
-          <Dare dare={dare} />
-        ))}
+      <div className="dare__box">
+        {dares.length !== 0 ? (
+          dares?.map((dare) => <Dare dare={dare} />)
+        ) : (
+          <img src={nodare} alt="" className="nodareImage" />
+        )}
       </div>
     </div>
   );

@@ -1,0 +1,23 @@
+.journal__component {
+  border: 2px solid black;
+  margin-bottom: 50px;
+  padding: 10px;
+  width: 400px;
+  border-radius: 18px;
+}
+.time {
+  margin-top: -23px;
+  width: 150px;
+  margin-left: auto;
+  margin-right: auto;
+  text-align: center;
+  z-index: 2;
+  background-color: white;
+  font-family: "Prompt";
+}
+.text__journal {
+  padding: 10px;
+  font-size: 20px;
+  font-family: "Prompt";
+}
+  

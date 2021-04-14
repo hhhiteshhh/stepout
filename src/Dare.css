@@ -7,7 +7,7 @@
 .modal__image {
   width: 100%;
   padding: 20px;
-  object-fit: "contain";
+  object-fit: contain;
 }
 .complete__button {
   font-size: 20;
@@ -27,7 +27,70 @@
   flex-direction: row;
   flex-wrap: wrap;
   box-shadow: 0px 4px 14px -3px rgba(0, 0, 0, 0.7);
+  min-width: 250px;
+  min-height: 250px;
+  max-width: 400px;
+  max-height: 400px;
 }
 .image__div:hover {
   cursor: pointer;
+}
+
+.MuiDialog-paperFullScreen {
+  margin: 25px !important;
+  margin-top: 100px !important;
+}
+
+@media (max-width: 1000px) {
+  .dare__box1,
+  .MuiDialog-paperFullScreen {
+    zoom: 1 !important;
+  }
+}
+@media (max-width: 930px) {
+  .dare__box1,
+  .MuiDialog-paperFullScreen {
+    zoom: 0.95 !important;
+  }
+}
+
+@media (max-width: 880px) {
+  .dare__box1,
+  .MuiDialog-paperFullScreen {
+    zoom: 0.9 !important;
+  }
+}
+
+@media (max-width: 760px) {
+  .dare__box1,
+  .MuiDialog-paperFullScreen {
+    zoom: 0.8 !important;
+  }
+}
+
+@media (max-width: 700px) {
+  .MuiDialog-paperFullScreen {
+    zoom: 0.75 !important;
+  }
+}
+@media (max-width: 600px) {
+  .MuiDialog-paperFullScreen {
+    zoom: 0.65 !important;
+  }
+}
+@media (max-width: 480px) {
+  .MuiDialog-paperFullScreen {
+    zoom: 0.55 !important;
+  }
+}
+@media (max-width: 400px) {
+  .MuiDialog-paperFullScreen {
+    zoom: 0.45 !important;
+  }
+}
+
+@media (max-width: 340px) {
+  .MuiDialog-paperFullScreen {
+    zoom: 0.35 !important;
+  }
 }

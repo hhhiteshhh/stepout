@@ -131,12 +131,12 @@
   text-decoration: underline;
 }
 
-.linktohomepage{
+.linktohomepage {
   display: flex;
   align-items: center;
   text-decoration: none;
 }
-@media (max-width: 980px) {
+@media (max-width: 979px) {
   .header__nav__option,
   .header__signin {
     display: none;

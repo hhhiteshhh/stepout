@@ -1,0 +1,109 @@
+.allJournalentries {
+  display: flex;
+  flex: 1;
+  flex-direction: row;
+  justify-content: space-around;
+  width: 100%;
+  margin-left: auto;
+  margin-right: auto;
+  flex-wrap: wrap;
+}
+
+@media (max-width: 1125px) {
+  .allJournalEntries {
+    zoom: 0.9 !important;
+  }
+}
+
+@media (max-width: 1040px) {
+  .allJournalEntries {
+    zoom: 0.85 !important;
+  }
+}
+
+@media (max-width: 1000px) {
+  .allJournalEntries {
+    zoom: 0.8 !important;
+  }
+}
+@media (max-width: 930px) {
+  .allJournalEntries {
+    zoom: 0.75 !important;
+  }
+  .allJournalentries {
+    flex-direction: column !important;
+    justify-content: center;
+    align-items: center;
+  }
+}
+
+@media (max-width: 880px) {
+  .allJournalEntries {
+    zoom: 0.7 !important;
+  }
+}
+
+@media (max-width: 820px) {
+  .allJournalEntries {
+    zoom: 0.65 !important;
+  }
+}
+
+@media (max-width: 760px) {
+  .allJournalEntries {
+    zoom: 0.6 !important;
+  }
+}
+
+@media (max-width: 700px) {
+  .allJournalEntries {
+    zoom: 0.55 !important;
+  }
+}
+
+@media (max-width: 640px) {
+  .allJournalEntries {
+    zoom: 0.5 !important;
+  }
+}
+@media (max-width: 580px) {
+  .allJournalEntries {
+    zoom: 0.45 !important;
+  }
+}
+
+@media (max-width: 520px) {
+  .allJournalEntries {
+    zoom: 0.4 !important;
+  }
+}
+
+@media (max-width: 460px) {
+  .allJournalEntries {
+    zoom: 0.35 !important;
+  }
+}
+
+@media (max-width: 400px) {
+  .allJournalEntries {
+    zoom: 0.3 !important;
+  }
+}
+
+@media (max-width: 350px) {
+  .allJournalEntries {
+    zoom: 0.25 !important;
+  }
+}
+
+@media (max-width: 300px) {
+  .allJournalEntries {
+    zoom: 0.2 !important;
+  }
+}
+
+@media (max-width: 250px) {
+  .allJournalEntries {
+    zoom: 0.15 !important;
+  }
+}

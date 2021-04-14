@@ -18,6 +18,60 @@
   border-top-right-radius: 20px;
   border: 2px solid #ee6c4d;
 }
+.journal {
+  margin-left: auto !important;
+  margin-right: auto !important;
+  width: 150px !important;
+}
+.entry__button {
+  display: flex;
+  justify-content: space-around;
+  margin-top: 18px;
+}
+.add__entry:hover,
+.all__entry:hover {
+  text-decoration: underline;
+}
+.add__entry {
+  padding: 18px;
+  font-family: Comfortaa;
+  background-color: #000;
+  color: white;
+  border-radius: 10px;
+  cursor: pointer;
+}
+.cllloseee___button:hover {
+  background-color: #000 !important;
+  color: #fff !important;
+}
+.submit__entry__button {
+  color: white !important;
+  background-color: #ee6c4d !important;
+  width: 100px;
+  font-size: 1 rem !important;
+  font-family: poppins !important;
+  padding-left: 30px !important;
+  padding-right: 30px !important;
+  margin-left: 40% !important;
+  margin-right: auto !important;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+.all__entry {
+  padding: 18px;
+  font-family: Comfortaa;
+  background-color: #000;
+  color: white;
+  border-radius: 10px;
+  cursor: pointer;
+}
+
+.MuiOutlinedInput-root {
+  border: none !important;
+}
+.all__entry > a {
+  color: white;
+  text-decoration: none;
+}
 .homeprofile__link {
   color: white !important;
   margin-left: 20px;
@@ -68,11 +122,15 @@
 .numberofchallenges {
   color: #ee6c4d;
 }
+.profile__container__1__left__1 {
+  font-size: 15px;
+}
 .profile__container__1__right {
   display: flex;
   flex-direction: column;
+  justify-content: center;
   background-color: white;
-  flex: 0.25;
+  flex: 0.3;
   margin: 30px;
   box-shadow: -10px 10px #ee6c4d;
 }
@@ -80,7 +138,7 @@
   display: flex;
   flex-direction: row;
   align-items: center;
-  margin: 30px;
+
   justify-content: center;
 }
 .username__text {
@@ -92,7 +150,8 @@
   font-size: 1.5rem;
   text-align: center;
   display: flex;
-  flex-direction: row;
+  flex-direction: column;
+  justify-content: space-around;
   padding: 20px;
   padding-top: 0px;
 }
