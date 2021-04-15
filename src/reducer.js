@@ -1,5 +1,6 @@
 export const initialState = {
   user: null,
+  daress: [],
 };
 // Selector
 
@@ -10,6 +11,13 @@ const reducer = (state, action) => {
       return {
         ...state,
         user: action.user,
+      };
+    case "ADD_TO_DARES":
+      let newDares = [...state.daress];
+      newDares.push("hello")
+      return {
+        ...state,
+        daress: newDares,
       };
 
     default:

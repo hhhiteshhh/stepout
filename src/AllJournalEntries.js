@@ -12,13 +12,10 @@ import DialogTitle from "@material-ui/core/DialogTitle";
 import { Button, InputLabel } from "@material-ui/core";
 import { makeStyles } from "@material-ui/core/styles";
 import TextField from "@material-ui/core/TextField";
-import FormControl from "@material-ui/core/FormControl";
-import Select from "@material-ui/core/Select";
-import MenuItem from "@material-ui/core/MenuItem";
 import KeyboardBackspaceIcon from "@material-ui/icons/KeyboardBackspace";
-import Activities from "./Activities";
 import firebase from "firebase";
 import Journal from "./Journal";
+import nojournal from "../src/images/nojournal.jpg";
 const useStyles = makeStyles((theme) => ({
   formControl: {
     margin: theme.spacing(1),
@@ -202,9 +199,11 @@ function AllJournalEntries() {
 
           <div className="alljournal__container">
             <div className="allJournalentries">
-              {journal?.map((journal) => (
-                <Journal journal={journal} />
-              ))}
+              {journal?.length !== 0 ? (
+                journal?.map((journal) => <Journal journal={journal} />)
+              ) : (
+                <img src={nojournal} alt="" style={{ height:350,width:400}} />
+              )}
             </div>
           </div>
         </div>{" "}

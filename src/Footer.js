@@ -9,13 +9,9 @@ import kkk from "./images/kkk.png";
 function Footer() {
   return (
     <div className="footer">
-      <Button
-        onClick={() => window.scrollTo(0, 0)}
-        className="footer__button"
-        variant="outlined"
-      >
+      <div onClick={() => window.scrollTo(0, 0)} className="footer__button">
         Back to top
-      </Button>
+      </div>
       <div className="footer__info">
         <div className="footer_infobox1">
           <img src={logo} className="footer__logo" alt="" />

@@ -54,9 +54,10 @@ function Challenges() {
   const [value, setValue] = useState("");
   const [error, setError] = useState(false);
   const history = useHistory();
-  const [{ user }] = useStateValue();
+  const [{ user, daress }, dispatch] = useStateValue();
   const [questions, setQuestions] = useState([]);
   const [dares, setDares] = useState([]);
+
   useEffect(() => {
     if (user) {
       db.collection("users")
@@ -89,6 +90,7 @@ function Challenges() {
             snapshot.docs.map((doc) => ({
               question: doc.data().question,
               answer: doc.data().answer,
+              isCompleted: doc.data().isCompleted,
             }))
           );
         });
@@ -109,12 +111,16 @@ function Challenges() {
   };
 
   const AddDare = (answer, question, qId) => {
-    db.collection("users").doc(user.uid).collection("DaresAnswers").add({
-      question: question,
-      answer: answer,
-      timestamp: firebase.firestore.FieldValue.serverTimestamp(),
-      isCompleted: false,
-    });
+    db.collection("users")
+      .doc(user.uid)
+      .collection("DaresAnswers")
+      .doc(answer)
+      .set({
+        question: question,
+        answer: answer,
+        timestamp: firebase.firestore.FieldValue.serverTimestamp(),
+        isCompleted: false,
+      });
 
     db.collection("users")
       .doc(user.uid)

@@ -37,23 +37,34 @@ function Dare(props) {
     setOpen(false);
   };
 
-  const [displaydare, setDispalydare] = useState(true);
+  const [displaydare, setDisplaydare] = useState(true);
   const [answer, setAnswer] = useState();
   const [{ user }] = useStateValue();
+
   useEffect(() => {
     if (user) {
       db.collection("Dares")
         .doc(props.dare.answer)
         .get()
         .then((snapshot) => {
-          setAnswer({ answer: snapshot.data(), id: snapshot.id });
+          setAnswer({
+            answer: snapshot.data(),
+            id: snapshot.id,
+          });
         });
     }
   }, [user]);
 
-  // const handleComplete = (id) => {
-  //   console.log(id);
-  // };
+  const handleComplete = (id) => {
+    db.collection("users")
+      .doc(user?.uid)
+      .collection("DaresAnswers")
+      .doc(id)
+      .update({
+        isCompleted: true,
+      });
+    setTimeout(handleClose, 2000);
+  };
   return (
     <div style={{ padding: 20 }} className="dare__box1">
       <Dialog
@@ -82,7 +93,7 @@ function Dare(props) {
             </Typography>
             <Button
               onClick={() => {
-                console.log(answer?.id);
+                handleComplete(answer?.id);
               }}
               style={{ color: "#fff", backgroundColor: "#ee6c4d" }}
             >
@@ -154,12 +165,26 @@ function Dare(props) {
         </div>
       </Dialog>
       {displaydare ? (
-        <img
-          src={answer?.answer.ImageURL}
-          alt=""
-          onClick={handleClickOpen}
-          className="image__div"
-        />
+        props.dare.isCompleted ? (
+          <div className="iscompletedtrue">
+            <img
+              src={answer?.answer.ImageURL}
+              alt=""
+              onClick={handleClickOpen}
+              className="image__div"
+            />
+            <div className="middle">
+              <div className="text">Completed</div>
+            </div>
+          </div>
+        ) : (
+          <img
+            src={answer?.answer.ImageURL}
+            alt=""
+            onClick={handleClickOpen}
+            className="image__div"
+          />
+        )
       ) : (
         ""
       )}

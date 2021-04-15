@@ -19,6 +19,7 @@ import Select from "@material-ui/core/Select";
 import MenuItem from "@material-ui/core/MenuItem";
 import Activities from "./Activities";
 import firebase from "firebase";
+import nopost from "../src/images/noposts.jpg";
 const useStyles = makeStyles((theme) => ({
   formControl: {
     margin: theme.spacing(1),
@@ -43,12 +44,13 @@ function HomeProfile(props) {
   const [maxWidth, setMaxWidth] = useState("md");
   const [maxWidth1, setMaxWidth1] = useState("lg");
   const history = useHistory();
-  const [{ user }] = useStateValue();
+  const [{ user, daress }] = useStateValue();
   const classes = useStyles();
   const [question, setQuestion] = useState("");
   const [answer, setAnswer] = useState("");
   const [answers, setAnswers] = useState([]);
   const [journal, setJournal] = useState("");
+  const [dareLength, setDareLength] = useState([]);
 
   const handleChange = (event) => {
     setQuestion(event.target.value);
@@ -123,6 +125,26 @@ function HomeProfile(props) {
     }
   }, [user]);
 
+  useEffect(() => {
+    if (user) {
+      db.collection("users")
+        .doc(user?.uid)
+        .collection("DaresAnswers")
+        .onSnapshot((snapshot) => {
+          setDareLength(
+            snapshot.docs.map((doc) => ({
+              id: doc.id,
+              answer: doc.data().answer,
+              question: doc.data().question,
+              isCompleted: doc.data().isCompleted,
+            }))
+          );
+        });
+    } else {
+      setDareLength([]);
+    }
+  }, [user]);
+
   const addJournalEntry = (e) => {
     e.preventDefault();
     db.collection("users").doc(user?.uid).collection("journals").add({
@@ -156,6 +178,8 @@ function HomeProfile(props) {
     setOpen(false);
     setQuestion("");
   };
+  let CurrChallenge = dareLength?.filter((e) => e.isCompleted == false);
+  let CompChallenge = dareLength?.filter((e) => e.isCompleted == true);
 
   return (
     <div className="homeprofile">
@@ -261,7 +285,11 @@ function HomeProfile(props) {
           </DialogContentText>
         </DialogContent>
         <DialogActions>
-          <Button onClick={handleClose} color="primary" className="cllloseee___button">
+          <Button
+            onClick={handleClose}
+            color="primary"
+            className="cllloseee___button"
+          >
             Close
           </Button>
         </DialogActions>
@@ -313,7 +341,11 @@ function HomeProfile(props) {
           </DialogContentText>
         </DialogContent>
         <DialogActions>
-          <Button onClick={handleClose1} color="primary" className="cllloseee___button">
+          <Button
+            onClick={handleClose1}
+            color="primary"
+            className="cllloseee___button"
+          >
             Close
           </Button>
         </DialogActions>
@@ -380,18 +412,16 @@ function HomeProfile(props) {
           <div className="profile__container__1__right__2">
             <div className="current__challenge">
               {" "}
-              <br />
               Current Challenges{" "}
-              <div>
-                <b>1</b>
+              <div style={{ padding: 10 }}>
+                <b>{CurrChallenge.length}</b>
               </div>
             </div>
             <div className="completed__challenge">
               {" "}
-              <br />
               Completed Challenges{" "}
-              <div>
-                <b>3</b>
+              <div style={{ padding: 10 }}>
+                <b>{CompChallenge.length}</b>
               </div>
             </div>
           </div>
@@ -419,13 +449,36 @@ function HomeProfile(props) {
               />
             </div>
           </div>
-          {answers.map((answer, question, username) => (
-            <Activities
-              answer={answer}
-              question={question}
-              username={username}
-            />
-          ))}
+          {answers.length !== 0 ? (
+            answers.map((answer, question, username) => (
+              <Activities
+                answer={answer}
+                question={question}
+                username={username}
+              />
+            ))
+          ) : (
+            <div
+              style={{
+                marginLeft: "auto",
+                marginRight: "auto",
+                height: 250,
+                width: 250,
+                objectFit: "contain",
+              }}
+            >
+              <img
+                src={nopost}
+                alt=""
+                style={{
+                  height: 250,
+                  width: 250,
+                  marginLeft: "auto",
+                  marginRight: "auto",
+                }}
+              />
+            </div>
+          )}
           <div className="all__activities">
             <Link to="/useractivities">See all</Link>
           </div>
