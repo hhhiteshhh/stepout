@@ -5,6 +5,7 @@
   align-items: center;
   margin-left: auto;
   margin-right: auto;
+  justify-content: space-around;
 }
 .homepage__container__2 {
   padding: 0px;
@@ -33,6 +34,7 @@
   box-shadow: -10px 10px #ee6c4d;
   height: 484px;
   margin-bottom: 50px;
+  max-width: 40%;
 }
 .homepage__container__2__left {
   display: flex;
@@ -40,6 +42,7 @@
   background-color: black;
   margin-bottom: 50px;
   box-shadow: 10px 10px #ee6c4d;
+  max-width: 792px;
 }
 .homepage__container__2__left__img1 {
   width: 400px;

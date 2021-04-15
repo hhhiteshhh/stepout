@@ -174,7 +174,7 @@ function Dare(props) {
               className="image__div"
             />
             <div className="middle">
-              <div className="text">Completed</div>
+              <div className="text__completed">Completed</div>
             </div>
           </div>
         ) : (

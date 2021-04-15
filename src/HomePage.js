@@ -41,7 +41,7 @@ function HomePage() {
   const [open1, setOpen1] = useState(false);
   const [open2, setOpen2] = useState(false);
   const [open3, setOpen3] = useState(false);
-  
+
   const handleClose1 = () => {
     setOpen1(false);
   };
@@ -111,17 +111,18 @@ function HomePage() {
       </div>
       <div className="homepage__container__2">
         <div className="homepage__container__2__left">
-          <img
-            className="homepage__container__2__left__img1"
-            src={question}
-            alt=""
-          ></img>
-          <img
-            className="homepage__container__2__left__img2"
-            src={challenge}
-            alt=""
-          ></img>
-        </div>
+         
+            <img
+              className="homepage__container__2__left__img1"
+              src={question}
+              alt=""
+            ></img>
+            <img
+              className="homepage__container__2__left__img2"
+              src={challenge}
+              alt=""
+            ></img>
+         </div>
         <div className="homepage__container__2__right">
           With <strong className="stepout">Step Out</strong>, Challenge yourself
           to do something new and outside your comfort zone. Answer a simple

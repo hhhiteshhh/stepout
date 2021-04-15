@@ -39,6 +39,8 @@ function AllJournalEntries() {
   const [{ user }] = useStateValue();
   const [maxWidth1, setMaxWidth1] = useState("lg");
   const [journal, setJournal] = useState([]);
+  const [journalentry, setJournalentry] = useState("");
+
   const classes = useStyles();
 
   const handleAuthentication = () => {
@@ -70,9 +72,9 @@ function AllJournalEntries() {
       timestamp: firebase.firestore.FieldValue.serverTimestamp(),
       username: user.displayName,
       userid: user.uid,
-      journal: journal,
+      journal: journalentry,
     });
-    setJournal("");
+    setJournalentry("");
     setOpen1(false);
   };
 
@@ -135,8 +137,8 @@ function AllJournalEntries() {
                   multiline
                   rows={4}
                   variant="outlined"
-                  value={journal}
-                  onChange={(e) => setJournal(e.target.value)}
+                  value={journalentry}
+                  onChange={(e) => setJournalentry(e.target.value)}
                 />
 
                 <br />
@@ -202,7 +204,11 @@ function AllJournalEntries() {
               {journal?.length !== 0 ? (
                 journal?.map((journal) => <Journal journal={journal} />)
               ) : (
-                <img src={nojournal} alt="" style={{ height:350,width:400}} />
+                <img
+                  src={nojournal}
+                  alt=""
+                  style={{ height: 350, width: 400 }}
+                />
               )}
             </div>
           </div>
