@@ -1,6 +1,6 @@
 import React from "react";
 import "./Aboutcomponent.css";
-import pic1 from "./images/team 1.png";
+import pic1 from "./images/team 1.jpeg";
 import pic2 from "./images/team 2.png";
 import kk from "./images/kk.png";
 import kkk from "./images/kkk.png";
@@ -23,18 +23,14 @@ function Aboutcomponent() {
           {" "}
           <img src={pic1} alt="" className="teamimage"></img>
           <span className="name">
-            <h1>Hitesh Kumar</h1> <br />
-          </span>
-          <span className="role">
-            <h2> (Developer)</h2>
-            <br />
+            <h1>Aarushi</h1> <br />
           </span>
           <span className="contact">
             <img src={kkk} className="footer__follow1" alt="" />
             <img src={kk} className="footer__follow2" alt="" />
           </span>
         </div>
-        <div className="about__component__intro__shivangi">
+        {/* <div className="about__component__intro__shivangi">
           <img src={pic2} alt="" className="teamimage"></img>
           <span className="name">
             <h1>Shivangi Bansal</h1> <br />
@@ -47,32 +43,32 @@ function Aboutcomponent() {
             <img src={kkk} className="footer__follow1" alt="" />
             <img src={kk} className="footer__follow2" alt="" />
           </span>
-        </div>
+        </div> */}
       </div>
       <div className="about__component__intro__text">
         {" "}
         <h2>
           {" "}
-          Hi! We are Shivangi Bansal and Hitesh Kumar, two individuals with a
-          passion of creativity - creativity makes us happy. We truly believe in
-          the transformative power of influence and motivation and their ability
-          to encourage challenges, elevate experiences, engage and inspire
-          people everywhere. A good combination of desire and dedicated hard
-          work is what we aim to inspire.{" "}
+          Hi! I am Aarushi, an individuals with a passion of creativity -
+          creativity makes me happy. I truly believe in the transformative power
+          of influence and motivation and my ability to encourage challenges,
+          elevate experiences, engage and inspire people everywhere. A good
+          combination of desire and dedicated hard work is what I aim to
+          inspire.{" "}
         </h2>
       </div>
-            <div className="black"></div>
+      <div className="black"></div>
       <div className="about__component__purpose">
         <h1>
           <span className="purpose">Our Purpose</span>
         </h1>
         <span className="purpose__text">
           <h3>
-            We used to feel like we want to do something, but we always excused
-            our way out of it. Our favorite one 'We don't have the time.'
+            I used to feel like we want to do something, but I always excused
+            our way out of it. My favorite one 'We don't have the time.'
             <br />
             <br />
-            Well, 2020 proved us wrong. It taught us that time was never our
+            Well, 2020 proved me wrong. It taught us that time was never our
             issue, and if we think carefully every other reason is also just an
             excuse. We were just too comfortable in our bubble to even try
             something which we actually wanted. This realization was
